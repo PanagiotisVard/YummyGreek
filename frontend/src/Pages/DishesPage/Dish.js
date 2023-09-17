@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -91,9 +92,13 @@ const Dish = ({ dish }) => {
           <IconButton onClick={incrementQuantity} color="primary">
             <AddCircleOutlineIcon fontSize="large" />
           </IconButton>
-          <IconButton onClick={openModal} color="primary">
-            <InfoOutlinedIcon fontSize="large" />
-          </IconButton>
+          <Link
+            to={`/dish/${dish.id}`} // Navigate to the dynamic DishInfoPage route with the dish ID
+          >
+            <IconButton color="primary">
+              <InfoOutlinedIcon fontSize="large" />
+            </IconButton>
+          </Link>
           <div
             style={{
               display: "flex",

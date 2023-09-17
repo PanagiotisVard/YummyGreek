@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
@@ -19,7 +20,7 @@ const DishesPage = () => {
   };
   
   
-  
+
 
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
@@ -40,7 +41,9 @@ const DishesPage = () => {
       const filteredDishes = filterDishesByTag(filter);
       return filteredDishes.map((dish, index) => (
         <Grid item key={dish.id} xs={12} sm={6} md={4} lg={3}>
-          <Dish dish={dish} />
+          <Link to={`/info/${dish.id}`}>
+            <Dish dish={dish} />
+          </Link>
         </Grid>
       ));
     }
@@ -117,7 +120,7 @@ const DishesPage = () => {
             variant="contained"
             color="primary"
             onClick={handleSubmitOrder}
-            style={{ backgroundColor: "green", marginBottom: "100px" }} // Add marginBottom
+            style={{ backgroundColor: "lite-0green", marginBottom: "100px" }} // Add marginBottom
           >
             Submit Order
           </Button>
