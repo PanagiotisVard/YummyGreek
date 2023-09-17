@@ -51,8 +51,8 @@ const Header = () => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem onClick={handleClose}>My Account</MenuItem>
-          <MenuItem onClick={handleClose}>Settings</MenuItem>
+          {/* <MenuItem onClick={handleClose}>My Account</MenuItem>
+          <MenuItem onClick={handleClose}>Settings</MenuItem> */}
           <MenuItem onClick={handleAboutUsClick}>About Us</MenuItem>
         </Menu>
       </Toolbar>

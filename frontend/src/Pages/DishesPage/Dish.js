@@ -1,13 +1,32 @@
 import React, { useState } from "react";
-import { Card, CardBody, CardImg, CardSubtitle, CardTitle, Button } from "reactstrap";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import CardHeader from "@mui/material/CardHeader";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import Slide from "@mui/material/Slide";
+import Paper from "@mui/material/Paper";
+import CloseIcon from "@mui/icons-material/Close"; // Import the close icon
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const Dish = ({ dish }) => {
   const image = dish.attributes.image.data[0].attributes;
 
   // Define CSS styles to control the image size
   const imgStyle = {
-    maxWidth: "100%", // Set the maximum width to 100% of its container
-    maxHeight: "200px", // Set a maximum height (adjust as needed)
+    maxWidth: "100%",
+    maxHeight: "200px",
   };
 
   // State to track the quantity of the dish
@@ -35,37 +54,96 @@ const Dish = ({ dish }) => {
 
   // Function to add the dish to the order
   const addToOrder = () => {
-    // You can implement the logic to add the dish to the order here
-    // For example, you can store it in state or send it to a server.
     console.log(`Added ${quantity}x ${dish.attributes.name} to the order`);
   };
 
+  // State to control the visibility of the modal
+  const [modalOpen, setModalOpen] = useState(false);
+
+  // Function to open the modal
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  // Function to close the modal
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
-    <Card className="dish-card">
-      <CardImg style={imgStyle} top src={`http://localhost:1337${image.url}`} alt={image.name} />
-      <CardBody>
-        <CardTitle>{dish.attributes.name}</CardTitle>
-        <CardSubtitle>
-          <strong>Price: {dish.attributes.price} €</strong>
-        </CardSubtitle>
-        <Button color="info" onClick={toggleIngredients}>
-          Info
-        </Button>
-        {ingredientsVisible && (
-          <div>
-            <h5>Ingredients:</h5>
-            <p>{dish.attributes.ingredients}</p>
-          </div>
-        )}
-        <div className="quantity-controls">
-          <Button color="primary" onClick={decrementQuantity}>-</Button>
+    <div>
+      <Card className="dish-card">
+        <CardMedia
+          component="img"
+          src={`http://localhost:1337${image.url}`}
+          alt={image.name}
+          style={imgStyle}
+        />
+        <CardContent>
+          <CardHeader title={dish.attributes.name} />
+          <Typography variant="subtitle1">
+            <strong>Price: {dish.attributes.price} €</strong>
+          </Typography>
+          <IconButton onClick={decrementQuantity} color="error">
+            <RemoveCircleOutlineIcon fontSize="large" />
+          </IconButton>
           <span>{quantity}</span>
-          <Button color="primary" onClick={incrementQuantity}>+</Button>
-        </div>
-        <Button color="success" onClick={addToOrder}>Add</Button>
-        <p>{dish.attributes.description}</p>
-      </CardBody>
-    </Card>
+          <IconButton onClick={incrementQuantity} color="primary">
+            <AddCircleOutlineIcon fontSize="large" />
+          </IconButton>
+          <IconButton onClick={openModal} color="primary">
+            <InfoOutlinedIcon fontSize="large" />
+          </IconButton>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "10px",
+            }}
+          >
+            <Button variant="contained" color="success" onClick={addToOrder}>
+              Add
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Ingredients Modal */}
+      <Dialog
+        open={modalOpen}
+        onClose={closeModal}
+        TransitionComponent={Transition}
+        PaperProps={{
+          style: {
+            borderRadius: 10,
+          },
+        }}
+      >
+        {/* Close button */}
+        <IconButton
+          edge="end"
+          color="inherit"
+          onClick={closeModal}
+          aria-label="close"
+          style={{
+            position: "absolute",
+            top: "10px",
+            right: "20px",
+            marginLeft: "-16px", // Add left margin to move it to the left
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+
+        <DialogTitle>Informations</DialogTitle>
+        <DialogContent>
+          <Typography variant="h5">Description:</Typography>
+          <Typography>{dish.attributes.description}</Typography>
+          <Typography variant="h5">Ingredients:</Typography>
+          <Typography>{dish.attributes.ingredients}</Typography>
+        </DialogContent>
+      </Dialog>
+    </div>
   );
 };
 

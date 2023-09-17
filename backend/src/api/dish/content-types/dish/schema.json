@@ -20,7 +20,7 @@
       "type": "decimal"
     },
     "ingredients": {
-      "type": "string"
+      "type": "text"
     },
     "image": {
       "type": "media",
@@ -33,8 +33,11 @@
         "audios"
       ]
     },
+    "description": {
+      "type": "text"
+    },
     "tags": {
-      "type": "string"
+      "type": "json"
     }
   }
 }

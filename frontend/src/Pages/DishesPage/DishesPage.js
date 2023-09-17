@@ -15,8 +15,11 @@ const DishesPage = () => {
   const [filter, setFilter] = useState("All");
 
   const filterDishesByTag = (tag) => {
-    return dishes.filter((dish) => dish.attributes.tags.includes(tag));
+    return dishes.filter((dish) => dish.attributes.tags?.[0]?.tags.some((dishTag) => dishTag === tag));
   };
+  
+  
+  
 
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
@@ -107,19 +110,19 @@ const DishesPage = () => {
         <Grid container spacing={3} className="category">
           {renderDishes()}
         </Grid>
-        <Grid container justifyContent="center" className="submit-order-button">
-          <Grid item>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleSubmitOrder}
-              style={{ backgroundColor: "blue" }}
-            >
-              Submit Order
-            </Button>
-          </Grid>
-        </Grid>
       </Container>
+      <Grid container justifyContent="center" className="submit-order-button">
+        <Grid item>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleSubmitOrder}
+            style={{ backgroundColor: "green", marginBottom: "100px" }} // Add marginBottom
+          >
+            Submit Order
+          </Button>
+        </Grid>
+      </Grid>
       <Footer></Footer>
     </div>
   );
