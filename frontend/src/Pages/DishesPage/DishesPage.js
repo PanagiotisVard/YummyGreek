@@ -32,18 +32,18 @@ const DishesPage = () => {
 
   const renderDishes = () => {
     if (filter === "All") {
-      return dishes.map((dish, index) => (
+      return dishes.map((dish) => (
         <Grid item key={dish.id} xs={12} sm={6} md={4} lg={3}>
+          {/* Remove the Link component */}
           <Dish dish={dish} />
         </Grid>
       ));
     } else {
       const filteredDishes = filterDishesByTag(filter);
-      return filteredDishes.map((dish, index) => (
+      return filteredDishes.map((dish) => (
         <Grid item key={dish.id} xs={12} sm={6} md={4} lg={3}>
-          <Link to={`/info/${dish.id}`}>
-            <Dish dish={dish} />
-          </Link>
+          {/* Remove the Link component */}
+          <Dish dish={dish} />
         </Grid>
       ));
     }

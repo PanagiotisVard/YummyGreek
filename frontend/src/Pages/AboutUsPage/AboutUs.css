@@ -1,0 +1,7 @@
+/* AboutUs.css */
+.back-button {
+  background-color: red !important;
+  position: absolute;
+  bottom: 10px; /* Adjust the distance from the bottom as needed */
+  right: 10px; /* Adjust the distance from the right as needed */
+}

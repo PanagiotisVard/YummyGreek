@@ -6,11 +6,12 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
+import "./Header.css"; // Import the external CSS file
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const navigate = useNavigate(); // Get the navigate function from React Router
+  const navigate = useNavigate();
 
   const handleMenuClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -21,20 +22,14 @@ const Header = () => {
   };
 
   const handleAboutUsClick = () => {
-    // Navigate to the "AboutUs" page when "About Us" is clicked
     navigate("/aboutus");
-    handleClose(); // Close the menu
-  };
-
-  const headerStyle = {
-    backgroundColor: "orange",
-    boxShadow: "0px 5px 5px rgba(0, 0, 0, 0.2)",
+    handleClose();
   };
 
   return (
-    <AppBar position="static" style={headerStyle}>
+    <AppBar position="sticky" className="header-bar">
       <Toolbar>
-        <Typography variant="h6" style={{ fontFamily: "'Nabla', sans-serif", fontSize: "2rem" }}>
+        <Typography variant="h6" className="header-title">
           YummyGreek
         </Typography>
         <IconButton
@@ -51,8 +46,6 @@ const Header = () => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          {/* <MenuItem onClick={handleClose}>My Account</MenuItem>
-          <MenuItem onClick={handleClose}>Settings</MenuItem> */}
           <MenuItem onClick={handleAboutUsClick}>About Us</MenuItem>
         </Menu>
       </Toolbar>

@@ -48,10 +48,10 @@ const DishInfoPage = () => {
         {/* Centered "BACK" button */}
         <Box display="flex" justifyContent="center" marginTop="10px">
           <Button
+            className="back-button"
             component={Link}
             to="/dishes"
             variant="contained"
-            color="error"
           >
             BACK
           </Button>
