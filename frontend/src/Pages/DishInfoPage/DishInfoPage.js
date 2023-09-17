@@ -1,10 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-import { Typography, Container, Paper, Button, Box } from "@mui/material";
+import { Typography, Container, Paper, Button } from "@mui/material";
+import { styled } from "@mui/system";
 import "./DishInfoPage.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+
+const DishInfoContainer = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(4),
+  marginTop: theme.spacing(3),
+  opacity: 0,
+  transition: "opacity 1s ease",
+  position: "relative",
+  // Adjust position and styling for the "BACK" button
+  "& .back-button": {
+    position: "absolute",
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+  },
+}));
 
 const DishInfoPage = () => {
   const { id } = useParams();
@@ -26,6 +41,17 @@ const DishInfoPage = () => {
     fetchDishById();
   }, [id]);
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (dish) {
+        // Set opacity to 1 when the dish data is available
+        document.getElementById("dish-info-container").style.opacity = 1;
+      }
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [dish]);
+
   if (!dish) {
     return <div>Loading...</div>;
   }
@@ -34,7 +60,7 @@ const DishInfoPage = () => {
     <div>
       <Header />
       <Container maxWidth="sm">
-        <Paper className="dish-info-container">
+        <DishInfoContainer id="dish-info-container" elevation={3}>
           <Typography variant="h4" gutterBottom>
             {dish.name}
           </Typography>
@@ -44,9 +70,7 @@ const DishInfoPage = () => {
           <Typography variant="body1">
             <strong>Ingredients:</strong> {dish.attributes.ingredients}
           </Typography>
-        </Paper>
-        {/* Centered "BACK" button */}
-        <Box display="flex" justifyContent="center" marginTop="10px">
+          {/* "BACK" button with the same fade-in effect */}
           <Button
             className="back-button"
             component={Link}
@@ -55,7 +79,7 @@ const DishInfoPage = () => {
           >
             BACK
           </Button>
-        </Box>
+        </DishInfoContainer>
       </Container>
       <Footer />
     </div>

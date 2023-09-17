@@ -14,7 +14,6 @@ import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import Slide from "@mui/material/Slide";
-import Paper from "@mui/material/Paper";
 import CloseIcon from "@mui/icons-material/Close"; // Import the close icon
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -33,9 +32,6 @@ const Dish = ({ dish }) => {
   // State to track the quantity of the dish
   const [quantity, setQuantity] = useState(0);
 
-  // State to track whether ingredients should be displayed
-  const [ingredientsVisible, setIngredientsVisible] = useState(false);
-
   // Function to increment the quantity
   const incrementQuantity = () => {
     setQuantity(quantity + 1);
@@ -48,11 +44,6 @@ const Dish = ({ dish }) => {
     }
   };
 
-  // Function to toggle the visibility of ingredients
-  const toggleIngredients = () => {
-    setIngredientsVisible(!ingredientsVisible);
-  };
-
   // Function to add the dish to the order
   const addToOrder = () => {
     console.log(`Added ${quantity}x ${dish.attributes.name} to the order`);
@@ -60,11 +51,6 @@ const Dish = ({ dish }) => {
 
   // State to control the visibility of the modal
   const [modalOpen, setModalOpen] = useState(false);
-
-  // Function to open the modal
-  const openModal = () => {
-    setModalOpen(true);
-  };
 
   // Function to close the modal
   const closeModal = () => {

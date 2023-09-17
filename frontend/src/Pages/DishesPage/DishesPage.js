@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
@@ -97,16 +96,6 @@ const DishesPage = () => {
               style={{ backgroundColor: "orange" }}
             >
               Gluten-Free
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => handleFilterChange("Nut-Free")}
-              style={{ backgroundColor: "orange" }}
-            >
-              Nut-Free
             </Button>
           </Grid>
         </Grid>
