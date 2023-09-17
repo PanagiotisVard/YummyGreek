@@ -6,9 +6,11 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const navigate = useNavigate(); // Get the navigate function from React Router
 
   const handleMenuClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -16,6 +18,12 @@ const Header = () => {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleAboutUsClick = () => {
+    // Navigate to the "AboutUs" page when "About Us" is clicked
+    navigate("/aboutus");
+    handleClose(); // Close the menu
   };
 
   const headerStyle = {
@@ -45,7 +53,7 @@ const Header = () => {
         >
           <MenuItem onClick={handleClose}>My Account</MenuItem>
           <MenuItem onClick={handleClose}>Orders</MenuItem>
-          <MenuItem onClick={handleClose}>About Us</MenuItem>
+          <MenuItem onClick={handleAboutUsClick}>About Us</MenuItem>
         </Menu>
       </Toolbar>
     </AppBar>

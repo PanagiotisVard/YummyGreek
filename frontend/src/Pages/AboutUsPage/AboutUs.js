@@ -1,6 +1,8 @@
 // AboutUs.js
 import React from 'react';
 import Header from "../Header/Header";
+import Footer from "../Footer/Footer"
+
 
 function AboutUs() {
   return (
@@ -11,6 +13,7 @@ function AboutUs() {
         Welcome to our restaurant! Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         ...
       </p>
+      <Footer></Footer>
     </div>
   );
 }

@@ -7,7 +7,7 @@ import "./DishList.css";
 import { useDishes } from "./useDishes";
 import Dish from "./Dish";
 import Header from "../Header/Header";
-
+import Footer from "../Footer/Footer"; 
 
 const DishesPage = () => {
   const navigate = useNavigate();
@@ -120,6 +120,7 @@ const DishesPage = () => {
           </Grid>
         </Grid>
       </Container>
+      <Footer></Footer>
     </div>
   );
 };
