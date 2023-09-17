@@ -1,15 +1,86 @@
+/* DishPage.css */
+
+/* Style for the header */
 .header {
-  background-color: orange; /* Set the background color to orange */
-  color: white; /* Text color for the header, you can adjust as needed */
-  padding: 10px; /* Add some padding for spacing */
+  background-color: orange;
+  color: white;
+  padding: 10px;
 }
 
-/* Style for header links (for example) */
+/* Style for header links */
 .header a {
-  color: white; /* Link color in the header */
-  text-decoration: none; /* Remove underline from links */
+  color: white;
+  text-decoration: none;
 }
 
-/* Add more styles as needed */
+/* Style for the filter buttons container */
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
 
-  
+/* Style for individual filter buttons */
+.filter-buttons button {
+  background-color: orange;
+  color: white;
+  margin-right: 10px;
+  border: none;
+}
+
+/* Style for the "About Us" and "Order" buttons container */
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Style for the "Submit Order" button container */
+.submit-order-button {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Style for the dish category container */
+.category {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-left: 20px;
+}
+
+/* Style for individual dishes */
+.dish-card {
+  margin: 10px;
+  width: 250px; /* Adjust the width as needed */
+  /* Add any other styles for individual dishes here */
+}
+
+/* Style for the "Info" button */
+.dish-card .info-button {
+  background-color: orange;
+  color: white;
+  border: none;
+  margin-top: 10px;
+}
+
+/* Style for the dish description */
+.dish-card .description {
+  margin-top: 10px;
+}
+
+/* Style for the quantity controls */
+.dish-card .quantity-controls {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* Style for the quantity buttons */
+.dish-card .quantity-controls button {
+  background-color: orange;
+  color: white;
+  border: none;
+  margin: 0 5px;
+}
