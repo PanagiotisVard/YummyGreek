@@ -1,0 +1,15 @@
+.header {
+  background-color: orange; /* Set the background color to orange */
+  color: white; /* Text color for the header, you can adjust as needed */
+  padding: 10px; /* Add some padding for spacing */
+}
+
+/* Style for header links (for example) */
+.header a {
+  color: white; /* Link color in the header */
+  text-decoration: none; /* Remove underline from links */
+}
+
+/* Add more styles as needed */
+
+  
