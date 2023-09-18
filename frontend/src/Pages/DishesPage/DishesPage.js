@@ -17,14 +17,14 @@ const DishesPage = () => {
   const navigate = useNavigate();
   const { dishes } = useDishes();
   const [filter, setFilter] = useState("All");
-  const [priceRange, setPriceRange] = useState("All"); // Initialize with "All"
+  // const [priceRange, setPriceRange] = useState("All"); // Initialize with "All"
   
   const [anchorEl, setAnchorEl] = useState(null); // Anchor element for the Menu
 
-  const handlePriceRangeFilter = (newPriceRange) => {
-    setPriceRange(newPriceRange);
-    setAnchorEl(null); // Close the Menu when a filter is selected
-  };
+  // const handlePriceRangeFilter = (newPriceRange) => {
+  //   setPriceRange(newPriceRange);
+  //   setAnchorEl(null); // Close the Menu when a filter is selected
+  // };
 
   const filterDishesByTag = (tag) => {
     return dishes.filter((dish) =>
@@ -52,31 +52,30 @@ const DishesPage = () => {
       filteredDishes = filterDishesByTag(filter);
     }
   
-    // Price Range Filtering
-    switch (priceRange) {
-      case "Under €10":
-        filteredDishes = filteredDishes.filter((dish) => dish.attributes.price < 10);
-        break;
-      case "€10 - €20":
-        filteredDishes = filteredDishes.filter((dish) => dish.attributes.price >= 10 && dish.attributes.price <= 20);
-        break;
-      case "€20 - €30":
-        filteredDishes = filteredDishes.filter((dish) => dish.attributes.price >= 20 && dish.attributes.price <= 30);
-        break;
-      case "€30 - €40":
-        filteredDishes = filteredDishes.filter((dish) => dish.attributes.price >= 30 && dish.attributes.price <= 40);
-        break;
-      case "Over €40":
-        filteredDishes = filteredDishes.filter((dish) => dish.attributes.price > 40);
-        break;
-      default:
-        // No price range filter applied
-        break;
-    }
+    // // Price Range Filtering
+    // switch (priceRange) {
+    //   case "Under €10":
+    //     filteredDishes = filteredDishes.filter((dish) => dish.attributes.price < 10);
+    //     break;
+    //   case "€10 - €20":
+    //     filteredDishes = filteredDishes.filter((dish) => dish.attributes.price >= 10 && dish.attributes.price <= 20);
+    //     break;
+    //   case "€20 - €30":
+    //     filteredDishes = filteredDishes.filter((dish) => dish.attributes.price >= 20 && dish.attributes.price <= 30);
+    //     break;
+    //   case "€30 - €40":
+    //     filteredDishes = filteredDishes.filter((dish) => dish.attributes.price >= 30 && dish.attributes.price <= 40);
+    //     break;
+    //   case "Over €40":
+    //     filteredDishes = filteredDishes.filter((dish) => dish.attributes.price > 40);
+    //     break;
+    //   default:
+    //     // No price range filter applied
+    //     break;
+    // }
   
     return filteredDishes.map((dish) => (
       <Grid item key={dish.id} xs={12} sm={6} md={4} lg={3}>
-        {/* Remove the Link component */}
         <Dish dish={dish} />
       </Grid>
     ));
@@ -116,7 +115,7 @@ const DishesPage = () => {
               <MenuItem onClick={() => handleFilterChange("Gluten-Free")}>
                 Gluten-Free
               </MenuItem>
-              {/* Price Range Filter */}
+              {/* Price Range Filter
               <MenuItem onClick={() => handlePriceRangeFilter("Under €10")}>
                 Under €10
               </MenuItem>
@@ -131,7 +130,7 @@ const DishesPage = () => {
               </MenuItem>
               <MenuItem onClick={() => handlePriceRangeFilter("Over €40")}>
                 Over €40
-              </MenuItem>
+              </MenuItem> */}
             </Menu>
           </Grid>
         </Grid>
@@ -147,7 +146,7 @@ const DishesPage = () => {
             onClick={handleSubmitOrder}
             style={{ backgroundColor: "lite-0green", marginBottom: "100px" }}
           >
-            Submit Order
+            Show Order
           </Button>
         </Grid>
       </Grid>
