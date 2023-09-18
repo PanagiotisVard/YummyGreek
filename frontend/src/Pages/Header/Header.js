@@ -46,8 +46,8 @@ const Header = () => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem>My Account</MenuItem>
-          <MenuItem>Settings</MenuItem>
+          {/* <MenuItem>My Account</MenuItem>
+          <MenuItem>Settings</MenuItem> */}
           <MenuItem onClick={handleAboutUsClick}>About Us</MenuItem>
         </Menu>
       </Toolbar>

@@ -5,6 +5,7 @@ import { Container, Typography, Table, TableContainer, TableHead, TableRow, Tabl
 import { Link } from 'react-router-dom';
 import './OrderPage.css'; // Import the CSS file
 
+
 const backButtonStyles = {
   flex: 1,
   marginLeft: '8px',
@@ -32,7 +33,7 @@ function Order() {
       <Container maxWidth="sm">
         <div className="order-box-container"> 
           <Typography variant="h5" className="order-box-heading"> 
-            My Order
+            Your Order
           </Typography>
           <TableContainer>
             <Table className="order-table"> 
