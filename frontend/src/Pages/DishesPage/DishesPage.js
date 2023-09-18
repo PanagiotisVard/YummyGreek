@@ -3,26 +3,35 @@ import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import IconButton from "@mui/material/IconButton";
+import TuneIcon from "@mui/icons-material/Tune"; // Import the TuneIcon
 import "./DishList.css";
 import { useDishes } from "./useDishes";
 import Dish from "./Dish";
 import Header from "../Header/Header";
-import Footer from "../Footer/Footer"; 
+import Footer from "../Footer/Footer";
 
 const DishesPage = () => {
   const navigate = useNavigate();
   const { dishes } = useDishes();
   const [filter, setFilter] = useState("All");
+  const [anchorEl, setAnchorEl] = useState(null); // Anchor element for the Menu
 
   const filterDishesByTag = (tag) => {
-    return dishes.filter((dish) => dish.attributes.tags?.[0]?.tags.some((dishTag) => dishTag === tag));
+    return dishes.filter((dish) =>
+      dish.attributes.tags?.[0]?.tags.some((dishTag) => dishTag === tag)
+    );
   };
-  
-  
-
 
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
+    setAnchorEl(null); // Close the Menu when a filter is selected
+  };
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget); // Open the Menu
   };
 
   const handleSubmitOrder = () => {
@@ -50,53 +59,27 @@ const DishesPage = () => {
 
   return (
     <div>
-    <Header/>
+      <Header />
       <Container>
-        <Grid
-          container
-          spacing={0}
-          justifyContent="center"
-          className="filter-buttons"
-        >
+        <Grid container spacing={0} justifyContent="flex-start" className="filter-buttons">
           <Grid item>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => handleFilterChange("All")}
-              style={{ backgroundColor: "orange" }}
+            <IconButton
+              aria-label="Filter Menu"
+              onClick={handleMenuOpen}
+              style={{ backgroundColor: "orange", marginLeft: "16px" }}
             >
-              All
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => handleFilterChange("Vegan")}
-              style={{ backgroundColor: "orange" }}
+              <TuneIcon /> {/* Use TuneIcon */}
+            </IconButton>
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={() => setAnchorEl(null)}
             >
-              Vegan
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => handleFilterChange("Lactose-Free")}
-              style={{ backgroundColor: "orange" }}
-            >
-              Lactose-Free
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => handleFilterChange("Gluten-Free")}
-              style={{ backgroundColor: "orange" }}
-            >
-              Gluten-Free
-            </Button>
+              <MenuItem onClick={() => handleFilterChange("All")}>All</MenuItem>
+              <MenuItem onClick={() => handleFilterChange("Vegan")}>Vegan</MenuItem>
+              <MenuItem onClick={() => handleFilterChange("Lactose-Free")}>Lactose-Free</MenuItem>
+              <MenuItem onClick={() => handleFilterChange("Gluten-Free")}>Gluten-Free</MenuItem>
+            </Menu>
           </Grid>
         </Grid>
         <Grid container spacing={3} className="category">
@@ -109,7 +92,7 @@ const DishesPage = () => {
             variant="contained"
             color="primary"
             onClick={handleSubmitOrder}
-            style={{ backgroundColor: "lite-0green", marginBottom: "100px" }} // Add marginBottom
+            style={{ backgroundColor: "lite-0green", marginBottom: "100px" }}
           >
             Submit Order
           </Button>
