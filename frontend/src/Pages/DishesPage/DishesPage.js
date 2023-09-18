@@ -17,7 +17,14 @@ const DishesPage = () => {
   const navigate = useNavigate();
   const { dishes } = useDishes();
   const [filter, setFilter] = useState("All");
+  const [priceRange, setPriceRange] = useState("All"); // Initialize with "All"
+  
   const [anchorEl, setAnchorEl] = useState(null); // Anchor element for the Menu
+
+  const handlePriceRangeFilter = (newPriceRange) => {
+    setPriceRange(newPriceRange);
+    setAnchorEl(null); // Close the Menu when a filter is selected
+  };
 
   const filterDishesByTag = (tag) => {
     return dishes.filter((dish) =>
@@ -39,36 +46,60 @@ const DishesPage = () => {
   };
 
   const renderDishes = () => {
-    if (filter === "All") {
-      return dishes.map((dish) => (
-        <Grid item key={dish.id} xs={12} sm={6} md={4} lg={3}>
-          {/* Remove the Link component */}
-          <Dish dish={dish} />
-        </Grid>
-      ));
-    } else {
-      const filteredDishes = filterDishesByTag(filter);
-      return filteredDishes.map((dish) => (
-        <Grid item key={dish.id} xs={12} sm={6} md={4} lg={3}>
-          {/* Remove the Link component */}
-          <Dish dish={dish} />
-        </Grid>
-      ));
+    let filteredDishes = dishes;
+  
+    if (filter !== "All") {
+      filteredDishes = filterDishesByTag(filter);
     }
+  
+    // Price Range Filtering
+    switch (priceRange) {
+      case "Under €10":
+        filteredDishes = filteredDishes.filter((dish) => dish.attributes.price < 10);
+        break;
+      case "€10 - €20":
+        filteredDishes = filteredDishes.filter((dish) => dish.attributes.price >= 10 && dish.attributes.price <= 20);
+        break;
+      case "€20 - €30":
+        filteredDishes = filteredDishes.filter((dish) => dish.attributes.price >= 20 && dish.attributes.price <= 30);
+        break;
+      case "€30 - €40":
+        filteredDishes = filteredDishes.filter((dish) => dish.attributes.price >= 30 && dish.attributes.price <= 40);
+        break;
+      case "Over €40":
+        filteredDishes = filteredDishes.filter((dish) => dish.attributes.price > 40);
+        break;
+      default:
+        // No price range filter applied
+        break;
+    }
+  
+    return filteredDishes.map((dish) => (
+      <Grid item key={dish.id} xs={12} sm={6} md={4} lg={3}>
+        {/* Remove the Link component */}
+        <Dish dish={dish} />
+      </Grid>
+    ));
   };
+  
 
   return (
     <div>
       <Header />
       <Container>
-        <Grid container spacing={0} justifyContent="flex-start" className="filter-buttons">
+        <Grid
+          container
+          spacing={0}
+          justifyContent="flex-start"
+          className="filter-buttons"
+        >
           <Grid item>
             <IconButton
-              aria-label="Filter Menu"
+              aria-label="Filter Price"
               onClick={handleMenuOpen}
               style={{ backgroundColor: "orange", marginLeft: "16px" }}
             >
-              <TuneIcon /> {/* Use TuneIcon */}
+              <TuneIcon />
             </IconButton>
             <Menu
               anchorEl={anchorEl}
@@ -76,9 +107,31 @@ const DishesPage = () => {
               onClose={() => setAnchorEl(null)}
             >
               <MenuItem onClick={() => handleFilterChange("All")}>All</MenuItem>
-              <MenuItem onClick={() => handleFilterChange("Vegan")}>Vegan</MenuItem>
-              <MenuItem onClick={() => handleFilterChange("Lactose-Free")}>Lactose-Free</MenuItem>
-              <MenuItem onClick={() => handleFilterChange("Gluten-Free")}>Gluten-Free</MenuItem>
+              <MenuItem onClick={() => handleFilterChange("Vegan")}>
+                Vegan
+              </MenuItem>
+              <MenuItem onClick={() => handleFilterChange("Lactose-Free")}>
+                Lactose-Free
+              </MenuItem>
+              <MenuItem onClick={() => handleFilterChange("Gluten-Free")}>
+                Gluten-Free
+              </MenuItem>
+              {/* Price Range Filter */}
+              <MenuItem onClick={() => handlePriceRangeFilter("Under €10")}>
+                Under €10
+              </MenuItem>
+              <MenuItem onClick={() => handlePriceRangeFilter("€10 - €20")}>
+                €10 - €20
+              </MenuItem>
+              <MenuItem onClick={() => handlePriceRangeFilter("€20 - €30")}>
+                €20 - €30
+              </MenuItem>
+              <MenuItem onClick={() => handlePriceRangeFilter("€30 - €40")}>
+                €30 - €40
+              </MenuItem>
+              <MenuItem onClick={() => handlePriceRangeFilter("Over €40")}>
+                Over €40
+              </MenuItem>
             </Menu>
           </Grid>
         </Grid>
