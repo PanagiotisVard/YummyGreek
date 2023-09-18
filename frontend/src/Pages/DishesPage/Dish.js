@@ -62,7 +62,7 @@ const Dish = ({ dish }) => {
       <Card className="dish-card">
         <CardMedia
           component="img"
-          src={`http://192.168.168.199:1337${image.url}`}
+          src={`http://localhost:1337${image.url}`}
           alt={image.name}
           style={imgStyle}
         />

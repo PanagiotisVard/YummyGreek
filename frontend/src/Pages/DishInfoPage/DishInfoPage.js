@@ -29,7 +29,7 @@ const DishInfoPage = () => {
     const fetchDishById = async () => {
       try {
         const response = await axios.get(
-          `http://192.168.168.199:1337/api/dishes/${id}?populate=*`
+          `http://localhost:1337/api/dishes/${id}?populate=*`
         );
         const fetchedDish = response.data.data;
         setDish(fetchedDish);
