@@ -26,7 +26,7 @@ Go to the project directory :
 Install dependencies on frontend folder and backend folder :
 
 ```bash
-  npm install
+  npm install  //to each folder
 ```
 
 Start the frontend server :
