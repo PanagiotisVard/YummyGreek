@@ -18,9 +18,8 @@ const DishesPage = () => {
   const { dishes } = useDishes();
   const [filter, setFilter] = useState("All");
   // const [priceRange, setPriceRange] = useState("All"); // Initialize with "All"
-  
-  const [anchorEl, setAnchorEl] = useState(null); // Anchor element for the Menu
 
+  const [anchorEl, setAnchorEl] = useState(null); // Anchor element for the Menu
 
   const filterDishesByTag = (tag) => {
     return dishes.filter((dish) =>
@@ -48,11 +47,11 @@ const DishesPage = () => {
 
   const renderDishes = () => {
     let filteredDishes = dishes;
-  
+
     if (filter !== "All") {
       filteredDishes = filterDishesByTag(filter);
     }
-  
+
     // // Price Range Filtering
     // switch (priceRange) {
     //   case "Under €10":
@@ -74,49 +73,51 @@ const DishesPage = () => {
     //     // No price range filter applied
     //     break;
     // }
-  
+
     return filteredDishes.map((dish) => (
       <Grid item key={dish.id} xs={12} sm={6} md={4} lg={3}>
         <Dish dish={dish} />
       </Grid>
     ));
   };
-  
 
   return (
-    <div>
-      <Header />
-      <Container>
-        <Grid
-          container
-          spacing={0}
-          justifyContent="flex-start"
-          className="filter-buttons"
-        >
-          <Grid item>
-            <IconButton
-              aria-label="Filter Price"
-              onClick={handleMenuOpen}
-              style={{ backgroundColor: "orange", marginLeft: "16px" }}
-            >
-              <TuneIcon />
-            </IconButton>
-            <Menu
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={() => setAnchorEl(null)}
-            >
-              <MenuItem onClick={() => handleFilterChange("All")}>All</MenuItem>
-              <MenuItem onClick={() => handleFilterChange("Vegan")}>
-                Vegan
-              </MenuItem>
-              <MenuItem onClick={() => handleFilterChange("Lactose-Free")}>
-                Lactose-Free
-              </MenuItem>
-              <MenuItem onClick={() => handleFilterChange("Gluten-Free")}>
-                Gluten-Free
-              </MenuItem>
-              {/* Price Range Filter
+    <div >
+      
+        <Header />
+        <Container>
+          <Grid
+            container
+            spacing={0}
+            justifyContent="flex-start"
+            className="filter-buttons"
+          >
+            <Grid item>
+              <IconButton
+                aria-label="Filter Price"
+                onClick={handleMenuOpen}
+                style={{ backgroundColor: "orange", marginLeft: "16px" }}
+              >
+                <TuneIcon />
+              </IconButton>
+              <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={() => setAnchorEl(null)}
+              >
+                <MenuItem onClick={() => handleFilterChange("All")}>
+                  All
+                </MenuItem>
+                <MenuItem onClick={() => handleFilterChange("Vegan")}>
+                  Vegan
+                </MenuItem>
+                <MenuItem onClick={() => handleFilterChange("Lactose-Free")}>
+                  Lactose-Free
+                </MenuItem>
+                <MenuItem onClick={() => handleFilterChange("Gluten-Free")}>
+                  Gluten-Free
+                </MenuItem>
+                {/* Price Range Filter
               <MenuItem onClick={() => handlePriceRangeFilter("Under €10")}>
                 Under €10
               </MenuItem>
@@ -132,26 +133,27 @@ const DishesPage = () => {
               <MenuItem onClick={() => handlePriceRangeFilter("Over €40")}>
                 Over €40
               </MenuItem> */}
-            </Menu>
+              </Menu>
+            </Grid>
+          </Grid>
+          <Grid container spacing={3} className="category">
+            {renderDishes()}
+          </Grid>
+        </Container>
+        <Grid container justifyContent="center" className="submit-order-button">
+          <Grid item>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleSubmitOrder}
+              style={{ backgroundColor: "lite-0green", marginBottom: "100px" }}
+            >
+              Show Order
+            </Button>
           </Grid>
         </Grid>
-        <Grid container spacing={3} className="category">
-          {renderDishes()}
-        </Grid>
-      </Container>
-      <Grid container justifyContent="center" className="submit-order-button">
-        <Grid item>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleSubmitOrder}
-            style={{ backgroundColor: "lite-0green", marginBottom: "100px" }}
-          >
-            Show Order
-          </Button>
-        </Grid>
-      </Grid>
-      <Footer></Footer>
+        <Footer></Footer>
+      
     </div>
   );
 };
