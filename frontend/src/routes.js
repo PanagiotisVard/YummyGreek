@@ -3,7 +3,7 @@ import { useRoutes,  Navigate} from 'react-router-dom';
 import Dishes from './Pages/DishesPage/DishesPage';
 import AboutUs from './Pages/AboutUsPage/AboutUs';
 import Order from './Pages/OrderPage/OrderPage';
-import DishInfoPage from './Pages/DishInfoPage/DishInfoPage'; // Import the DishInfoPage component
+import DishInfoPage from './Pages/DishInfoPage/DishInfoPage'; 
 
 export default function AppRoutes() {
   const routes = useRoutes([
@@ -11,7 +11,7 @@ export default function AppRoutes() {
     { path: '/dishes', element: <Dishes /> },
     { path: '/aboutus', element: <AboutUs /> },
     { path: '/order', element: <Order /> },
-    { path: '/dish/:id', element: <DishInfoPage /> }, // Add the route for DishInfoPage with a dynamic parameter
+    { path: '/dish/:id', element: <DishInfoPage /> }, 
   ]);
 
   return routes;
