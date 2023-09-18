@@ -18,17 +18,17 @@ const buttonsContainerStyles = {
 };
 
 const sendOrderButtonStyles = {
-  flex: 2, // Takes 2 times the space compared to the "BACK" button
-  marginRight: '8px', // Adjust the spacing between buttons
+  flex: 2, 
+  marginRight: '8px', 
 };
 
 const backButtonStyles = {
   flex: 1,
   marginLeft: '8px',
-  marginTop: '20px', // Adjust the marginTop as needed
+  marginTop: '20px', 
 };
 
-
+// TODO: In the future the data will be fetched dynamically.
 function Order() {
   // Sample data for dishes
   const dishes = [
@@ -37,9 +37,9 @@ function Order() {
     { name: 'Dish 3', price: 8.99, quantity: 3 },
   ];
 
-  // Function to handle sending the order
+  //TODO: Function to handle sending the order 
   const handleSendOrder = () => {
-    // Add your logic to send the order here
+
     console.log('Order sent:', dishes);
   };
 
@@ -73,7 +73,6 @@ function Order() {
           </Table>
         </TableContainer>
         <div style={buttonsContainerStyles}>
-          {/* SEND ORDER button */}
           <Button
             variant="contained"
             color="primary"
@@ -82,7 +81,6 @@ function Order() {
           >
             SEND ORDER
           </Button>
-          {/* BACK button */}
           <Button
             component={Link}
             to="/"
@@ -98,5 +96,4 @@ function Order() {
     </div>
   );
 }
-
 export default Order;

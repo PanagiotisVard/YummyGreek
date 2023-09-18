@@ -13,7 +13,6 @@ const DishInfoContainer = styled(Paper)(({ theme }) => ({
   opacity: 0,
   transition: "opacity 1s ease",
   position: "relative",
-  // Adjust position and styling for the "BACK" button
   "& .back-button": {
     position: "absolute",
     bottom: theme.spacing(2),
@@ -70,7 +69,6 @@ const DishInfoPage = () => {
           <Typography variant="body1">
             <strong>Ingredients:</strong> {dish.attributes.ingredients}
           </Typography>
-          {/* "BACK" button with the same fade-in effect */}
           <Button
             className="back-button"
             component={Link}

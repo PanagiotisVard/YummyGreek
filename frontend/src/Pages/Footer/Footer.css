@@ -1,5 +1,3 @@
-/* footer.css */
-
 /* Style for the footer container */
 .footer-container {
     background-color: orange;
@@ -11,13 +9,10 @@
     left: 0;
     right: 0;
     width: 100%;
-    z-index: 100; /* Ensure it's above other content */
+    z-index: 100;
   }
   
   /* Style for the footer text */
   .footer-text {
-    font-size: 12px; /* Adjust the font size as needed */
+    font-size: 12px;
   }
-  
-  /* Add any additional styles as needed */
-  

@@ -21,16 +21,17 @@ const DishesPage = () => {
   
   const [anchorEl, setAnchorEl] = useState(null); // Anchor element for the Menu
 
-  // const handlePriceRangeFilter = (newPriceRange) => {
-  //   setPriceRange(newPriceRange);
-  //   setAnchorEl(null); // Close the Menu when a filter is selected
-  // };
 
   const filterDishesByTag = (tag) => {
     return dishes.filter((dish) =>
       dish.attributes.tags?.[0]?.tags.some((dishTag) => dishTag === tag)
     );
   };
+
+  // const handlePriceRangeFilter = (newPriceRange) => {
+  //   setPriceRange(newPriceRange);
+  //   setAnchorEl(null); // Close the Menu when a filter is selected
+  // };
 
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
