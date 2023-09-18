@@ -3,24 +3,7 @@ import Header from "../Header/Header";
 import Footer from '../Footer/Footer';
 import { Container, Typography, Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
-
-const centerTextStyles = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  minHeight: '100px',
-};
-
-const buttonsContainerStyles = {
-  display: 'flex',
-  alignItems: 'center',
-  marginTop: '16px',
-};
-
-const sendOrderButtonStyles = {
-  flex: 2, 
-  marginRight: '8px', 
-};
+import './OrderPage.css'; // Import the CSS file
 
 const backButtonStyles = {
   flex: 1,
@@ -47,37 +30,37 @@ function Order() {
     <div>
       <Header />
       <Container maxWidth="sm">
-        <div style={centerTextStyles}>
-          <Typography variant="h4">
+        <div className="order-box-container"> 
+          <Typography variant="h5" className="order-box-heading"> 
             My Order
           </Typography>
-        </div>
-        <TableContainer>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Dish Name</TableCell>
-                <TableCell>Price</TableCell>
-                <TableCell>Quantity</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {dishes.map((dish, index) => (
-                <TableRow key={index}>
-                  <TableCell>{dish.name}</TableCell>
-                  <TableCell>${dish.price.toFixed(2)}</TableCell>
-                  <TableCell>{dish.quantity}</TableCell>
+          <TableContainer>
+            <Table className="order-table"> 
+              <TableHead>
+                <TableRow>
+                  <TableCell>Dish Name</TableCell>
+                  <TableCell>Price</TableCell>
+                  <TableCell>Quantity</TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <div style={buttonsContainerStyles}>
+              </TableHead>
+              <TableBody>
+                {dishes.map((dish, index) => (
+                  <TableRow key={index}>
+                    <TableCell>{dish.name}</TableCell>
+                    <TableCell>${dish.price.toFixed(2)}</TableCell>
+                    <TableCell>{dish.quantity}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
+        <div className="buttons-container"> 
           <Button
             variant="contained"
             color="primary"
             onClick={handleSendOrder}
-            style={sendOrderButtonStyles}
+            className="send-order-button" 
           >
             SEND ORDER
           </Button>
