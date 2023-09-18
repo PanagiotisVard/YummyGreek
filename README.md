@@ -5,8 +5,10 @@
 To run this project on your local machine, follow these steps:
 
 1. Clone the repository:
-git clone https://github.com/PanagiotisVard/YummyGreek.git
-cd YummyGreek
+   ```bash
+   git clone https://github.com/PanagiotisVard/YummyGreek.git
+   cd YummyGreek
+
 
 2. Install backend dependencies
    npm install
